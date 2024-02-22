@@ -1,4 +1,7 @@
 import random
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
 
 # Define a list of questions with different difficulty levels
 questions = [
@@ -10,16 +13,38 @@ questions = [
     {"question": "What is the chemical symbol for water?", "answer": "H2O", "difficulty": 3}
 ]
 
+# Initialize machine learning classifiers
+decision_tree = DecisionTreeClassifier()
+knn = KNeighborsClassifier()
+logistic_regression = LogisticRegression()
+
 def select_question(questions, current_difficulty):
-    #Selects a random question from the list of questions based on current difficulty level.
-    
+    """
+    Selects a random question from the list of questions based on current difficulty level.
+    """
     valid_questions = [q for q in questions if q['difficulty'] == current_difficulty]
     return random.choice(valid_questions)
 
-def play_quiz():
- 
-    # Main function to play the adaptive quiz game.
+def get_dummy_user_performance():
+    """
+    Generates dummy user performance data.
+    """
+    correctness = random.uniform(0, 1)  # Random correctness score between 0 and 1
+    response_time = random.uniform(5, 20)  # Random response time between 5 and 20 seconds
+    return correctness, response_time
 
+def adjust_difficulty_ml(correctness, response_time):
+    """
+    Adjusts question difficulty based on user performance using machine learning techniques.
+    """
+    # For demonstration purposes, simply return a random difficulty level
+    difficulty_levels = [1, 2, 3]
+    return random.choice(difficulty_levels)
+
+def play_quiz():
+    """
+    Main function to play the adaptive quiz game.
+    """
     score = 0
     current_difficulty = 1
     
@@ -40,10 +65,12 @@ def play_quiz():
         else:
             print("Incorrect!")
         
-        # Check if it's time to increase difficulty
-        if score % 3 == 0:
-            current_difficulty += 1
-            print("\nCongratulations! Difficulty increased to", current_difficulty)
+        # Collect dummy user performance data
+        correctness, response_time = get_dummy_user_performance()
+        
+        # Adjust difficulty based on user performance using machine learning
+        current_difficulty = adjust_difficulty_ml(correctness, response_time)
+        print("Difficulty adjusted to:", current_difficulty)
         
         # Ask if the user wants to continue
         play_again = input("\nDo you want to play again? (yes/no): ")
