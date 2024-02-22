@@ -1,0 +1,11 @@
+import random
+
+def get_dummy_user_performance():
+    """
+    Generates dummy user performance data.
+    """
+    correctness = random.uniform(0, 1)  # Random correctness score between 0 and 1
+    response_time = random.uniform(5, 20)  # Random response time between 5 and 20 seconds
+    return correctness, response_time
+
+  correctness, response_time = get_dummy_user_performance()
