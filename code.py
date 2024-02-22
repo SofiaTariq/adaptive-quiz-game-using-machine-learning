@@ -11,16 +11,15 @@ questions = [
 ]
 
 def select_question(questions, current_difficulty):
-    """
-    Selects a random question from the list of questions based on current difficulty level.
-    """
+    #Selects a random question from the list of questions based on current difficulty level.
+    
     valid_questions = [q for q in questions if q['difficulty'] == current_difficulty]
     return random.choice(valid_questions)
 
 def play_quiz():
-    """
-    Main function to play the adaptive quiz game.
-    """
+ 
+    # Main function to play the adaptive quiz game.
+
     score = 0
     current_difficulty = 1
     
